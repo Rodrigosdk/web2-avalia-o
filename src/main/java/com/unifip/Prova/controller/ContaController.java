@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,14 +31,15 @@ public class ContaController {
         return contaDB;
     }
 
-    
+    @RequestMapping(value = "/pagar", method = RequestMethod.PUT)
+    public void pagarConta(@RequestParam long id) {
+        Conta conta = this.contaDB.get(id);
+        conta.setStatus(Status.PAGO);
+        this.contaDB.put(id, conta);
+    }
 /** @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @RequestMapping(value = "", method = RequestMethod.DELETE)
     public void cancelarConta() {
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.PUT)
-    public void pagarConta() {
     }
 
     
