@@ -1,6 +1,7 @@
 package com.unifip.Prova.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import lombok.Setter;
 public class Conta {
     private Long id;
     private String descricao;
-    private String valor;
-    private Status status;
+    private Long valor;
+    @Builder.Default
+    private Status status = Status.PENDENTE;
 }
