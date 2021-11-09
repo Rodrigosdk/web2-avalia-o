@@ -37,12 +37,13 @@ public class ContaController {
         conta.setStatus(Status.PAGO);
         this.contaDB.put(id, conta);
     }
-/** @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public void cancelarConta() {
-    }
 
-    
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    @RequestMapping(value = "", method = RequestMethod.DELETE)
+    public void cancelarConta(@RequestParam long id) {
+        this.contaDB.remove(id);
+    }
+/** 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public void buscarContaID() {
