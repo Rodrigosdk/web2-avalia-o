@@ -32,7 +32,7 @@ public class ContaController {
     }
 
     @RequestMapping(value = "/pagar", method = RequestMethod.PUT)
-    public void pagarConta(@RequestParam long id) {
+    public void pagarConta(@RequestParam Long id) {
         Conta conta = this.contaDB.get(id);
         conta.setStatus(Status.PAGO);
         this.contaDB.put(id, conta);
@@ -40,19 +40,20 @@ public class ContaController {
 
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public void cancelarConta(@RequestParam long id) {
+    public void cancelarConta(@RequestParam Long id) {
         this.contaDB.remove(id);
     }
-/** 
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public void buscarContaID() {
-    
+    @RequestMapping(value = "/buscar", method = RequestMethod.GET)
+    public Conta buscarContaID(@RequestParam Long id) {
+        return this.contaDB.get(id);
     }
-
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public void contasStatus() {
-    }
+    /**
+     * 
+     * 
+     * 
+     * @RequestMapping(value = "", method = RequestMethod.GET) public void
+     *                       contasStatus() { }
      */
-   
+
 }
